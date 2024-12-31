@@ -1,0 +1,56 @@
+ 
+<div class="shadow-lg rounded-lg p-5 bg-white w-[46%] h-[448px] m-auto">
+  <!-- Highcharts component for displaying the chart -->
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions">
+  </highcharts-chart>
+</div>
+
+<div class="shadow-lg rounded-lg p-5 bg-white mt-5">
+  <!-- Table displaying the dynamic data -->
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th class="text-center">First Name</th>
+        <th class="text-center">Product Name</th>
+        <th class="text-center">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of sellerData">
+        <td class="text-center">{{ data.first_name }}</td>
+        <td class="text-center">{{ data.product_name }}</td>
+        <td class="text-center">{{ data.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="container my-5">
+  <div class="shadow-lg rounded-lg p-5 bg-white">
+   
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center">First Name</th>
+          <th class="text-center">Product Name</th>
+          <th class="text-center">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of sellerData">
+          <td class="text-center">{{ data.first_name }}</td>
+          <td class="text-center">{{ data.product_name }}</td>
+          <td class="text-center">{{ data.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->

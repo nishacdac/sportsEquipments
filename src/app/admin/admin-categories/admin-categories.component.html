@@ -1,0 +1,99 @@
+<!-- Admin Categories Table -->
+<div class="flex justify-end mb-6">
+  <button (click)="openAddModal()" 
+    class="categories bg-blue-600 text-white text-[18px] px-3 py-2 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200">
+    Add Category
+  </button>
+</div>
+
+<div class="overflow-x-auto bg-white shadow-lg rounded-lg">
+  <table class="min-w-full table-auto border-collapse">
+    <thead class="bg-gray-100 text-gray-800">
+      <tr>
+        <!-- <th class="px-6 py-3 text-left text-sm font-bold text-black">Category ID</th> -->
+        <th class="px-6 py-3 text-left text-sm font-bold text-black">Name</th>
+        <th class="px-6 py-3 text-left text-sm font-bold text-black">Description</th>
+        <th class="px-6 py-3 text-left text-sm font-bold text-black">Created At</th>
+        <th class="px-6 py-3 text-left text-sm font-bold text-black">Status</th>
+        <th class="px-6 py-3 text-left text-sm font-bold text-black">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="text-gray-700">
+      <tr *ngFor="let category of categories" class="transition-all duration-300 hover:bg-gray-50">
+        <!-- <td class="px-6 py-4 text-sm">{{ category.categoryId }}</td> -->
+        <td class="px-6 py-4 text-sm">{{ category.name }}</td>
+        <td class="px-6 py-4 text-sm">{{ category.description }}</td>
+        <td class="px-6 py-4 text-sm">{{ category.createdAt | date }}</td>
+        <td class="px-6 py-4 text-sm">{{ category.categoryStatus }}</td>
+        <td class="px-6 py-4 flex space-x-2">
+          <button (click)="openEditModal(category)" 
+            class="bg-yellow-500 text-white text-[15px] py-[6px] px-[15px] rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-200">
+            Edit
+          </button>
+          <button (click)="deleteCategory(category.categoryId)" 
+            class="bg-red-500 text-white text-[15px] py-[6px] px-[15px] rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-200">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal for Add/Edit Category -->
+<div *ngIf="isEditModalOpen || isAddModalOpen" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">{{ isEditModalOpen ? 'Edit Category' : 'Add Category' }}</h2>
+    <form>
+     
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input
+          id="name"  type="text"[(ngModel)]="selectedCategory.name"name="name"
+          class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required  #nameInput="ngModel"
+        />
+        <div *ngIf="nameInput.invalid && nameInput.touched" class="text-red-500 text-sm">
+          Name is required.
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+        <textarea
+          id="description"
+          [(ngModel)]="selectedCategory.description"
+          name="description"
+          rows="4"
+          class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400" required #descriptionInput="ngModel"
+        ></textarea>
+        <div *ngIf="descriptionInput.invalid && descriptionInput.touched" class="text-red-500 text-sm"> Description is Required.</div>
+      </div>
+
+      
+      <div class="mb-4">
+        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+        <select
+          id="status"
+          [(ngModel)]="selectedCategory.categoryStatus"
+          name="status"
+          class="border border-gray-300 rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <option value="Pending">Pending</option>
+          <option value="Delivered">Delivered</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="flex justify-between mt-6">
+        <button type="button" (click)="saveCategory()" 
+          class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200">
+          Save
+        </button>
+        <button type="button" (click)="closeModals()" 
+          class="bg-gray-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 transition duration-200">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

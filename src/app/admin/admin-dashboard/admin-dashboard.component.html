@@ -1,0 +1,29 @@
+<div class="chart-container">
+  <!-- Bar Chart -->
+  <jqxChart
+    #productChartReference
+    [width]="'100%'"
+    [height]="'500px'"
+    [title]="'Product Quantities'"
+    [description]="'Quantity of each product available'"
+    [showLegend]="true"
+    [source]="dataAdapter"
+    [xAxis]="xAxis"
+    [valueAxis]="valueAxis"
+    [seriesGroups]="barChartSeriesGroups">
+  </jqxChart>
+</div>
+
+<div class="chart-container">
+  <!-- Pie Chart -->
+  <jqxChart
+    #productPieChartReference
+    [width]="'100%'"
+    [height]="'500px'"
+    [title]="'Product Quantities Distribution'"
+    [description]="'Percentage of each product available'"
+    [showLegend]="true"
+    [source]="dataAdapter"
+    [seriesGroups]="pieChartSeriesGroups">
+  </jqxChart>
+</div>

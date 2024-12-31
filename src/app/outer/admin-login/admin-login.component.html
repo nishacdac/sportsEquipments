@@ -1,0 +1,50 @@
+
+<form
+  class="signIn-container p-6 shadow-lg rounded-lg w-full sm:w-10/12 md:w-8/12 lg:w-4/12 mx-auto mt-[160px] mb-10 px-4 sm:px-6 md:px-8"
+  [formGroup]="AdminForm"
+  (ngSubmit)="signInUser()"
+>
+  <h1 class="text-center text-xl sm:text-2xl font-semibold px-4 sm:px-6">Admin Sign In</h1>
+
+  <!-- Email Field -->
+  <div class="email mb-4 sm:px-6 px-4">
+    <label for="email" class="block text-sm font-medium">Email</label>
+    <input
+      id="email"
+      formControlName="email"
+      class="signIn-input w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+      type="text"
+      placeholder="Enter Email"
+    />
+    <!-- Display error message if the email field is invalid -->
+    <span *ngIf="email?.invalid && email?.touched" class="text-red-500 text-xs">
+      Please enter a valid email address.
+    </span>
+  </div>
+
+  <!-- Password Field -->
+  <div class="mb-4 sm:px-6 px-4">
+    <label for="password" class="block text-sm font-medium">Password</label>
+    <input
+      id="password"
+      formControlName="password"
+      class="signIn-input w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+      type="password"
+      placeholder="Enter Password"
+    />
+    <!-- Display error message if the password field is invalid -->
+    <span *ngIf="password?.invalid && password?.touched" class="text-red-500 text-xs">
+      Password is required.
+    </span>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="mt-6 sm:px-6 px-4">
+    <button
+      type="submit"
+      class="btn-signIn w-full bg-[#E03C31] text-white py-3 rounded-md hover:bg-red-700 focus:outline-none"
+    >
+      Log in
+    </button>
+  </div>
+</form>

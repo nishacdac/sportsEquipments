@@ -1,0 +1,230 @@
+<div class="btnn mb-[36px]">
+  <button class="btn btn-primary py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none bg-[blue]"
+    routerLink="../add-seller">
+    Add
+  </button>
+</div>
+
+<div class="container">
+  <div class="card shadow border-0">
+    <!-- <div class="card-header text-white bg-[#27a927] !bg-[#27a927]">
+      <h4 class="mb-0 text-[20px]">Admin Seller Details</h4>
+    </div>
+     -->
+    <div class="card-body p-4">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Company Name</th>
+            <th>GST Number</th>
+            <th>Full Name</th>
+            <th>Status</th>
+            <th class="pl-[60px]">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let adminSeller of adminSellers">
+            <td>{{ adminSeller.company_name }}</td>
+            <td>{{ adminSeller.gst_number }}</td>
+            <td>{{ adminSeller.first_name }} {{ adminSeller.last_name }}</td>
+            <td>{{ getStatusLabel(adminSeller.status) }}</td>
+            <td class="flex gap-3">
+              <!-- View Button -->
+              <button (click)="openViewModal(adminSeller)"
+                class="btn btn-sm btn-primary shadow-sm bg-green-500 !bg-green-500">
+                <i class="fas fa-eye"></i> <span class="ms-2">View</span>
+              </button>
+
+
+              <!-- Edit Button -->
+              <button (click)="openEditModal(adminSeller)" class="btn btn-sm btn-primary shadow-sm bg-[blue]">
+                <i class="fas fa-edit me-2"></i> <span class="ms-2">Edit</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- View Modal -->
+<div *ngIf="isViewModalOpen" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.6)">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-white" style="background-color: rgb(147, 51, 234); opacity: var(--tw-bg-opacity);">
+        <h5 class="modal-title">Seller Details</h5>
+        <button type="button" class="btn-close" (click)="closeViewModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3">
+          <h6 class="text-secondary mb-3">Company Details</h6>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Company Name</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.company_name }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">GST Number</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.gst_number }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Company Address</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.company_address }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Company Email</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.company_email }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Company Mobile Number</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.company_mobile_number }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Logo</label>
+            <img *ngIf="selectedAdminSeller.logo" [src]="'data:image/jpeg;base64,' + selectedAdminSeller.logo"
+              alt="Logo" class="img-thumbnail" style="max-width: 100px;" />
+          </div>
+        </div>
+        <hr />
+        <h6 class="text-secondary mb-3">Basic Information</h6>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label fw-bold">First Name</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.first_name }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Last Name</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.last_name }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Gender</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.gender }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Email</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.email }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Mobile Number</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.mobile_number }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Status</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.status }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Created At</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.created_at | date: 'dd/MM/yyyy, h:mm a' }}</p>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold">Updated At</label>
+            <p class="form-control-plaintext">{{ selectedAdminSeller.updated_at | date: 'dd/MM/yyyy, h:mm a' }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeViewModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div *ngIf="isEditModalOpen" class="modal fade show d-block" tabindex="-1" style="background: rgba(0, 0, 0, 0.6)">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header text-white" style="background-color: rgb(147, 51, 234); opacity: var(--tw-bg-opacity);">
+        <h5 class="modal-title">Edit Seller Details</h5>
+        <button type="button" class="btn-close" (click)="closeEditModal()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveSeller()" #editSellerForm="ngForm">
+          <h6 class="text-secondary mb-3">Company Details</h6>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Company Name</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.company_name" name="company_name"
+                required #companyName="ngModel" />
+              <div *ngIf="companyName.invalid && companyName.touched" class="text-danger">Company Name is Required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">GST Number</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.gst_number" name="gst_number"
+                required #gstNumber="ngModel" />
+              <div *ngIf="gstNumber.invalid && gstNumber.touched" class="text-danger">GST Number is Required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Company Address</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.company_address"
+                name="company_address" #companyAddress="ngModel" />
+              <div *ngIf="companyAddress.invalid && companyAddress.touched" class="text-danger">Company Address is Required.</div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Company Email</label>
+              <input type="email" class="form-control" [(ngModel)]="selectedAdminSeller.company_email"
+                name="company_email" required #companyEmail="ngModel" />
+              <div *ngIf="companyEmail.invalid && companyEmail.touched" class="text-danger">Valid email is required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Company Mobile Number</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.company_mobile_number"
+                name="company_mobile_number" required #companyMobileNumber="ngModel" />
+              <div *ngIf="companyMobileNumber.invalid && companyMobileNumber.touched" class="text-danger">Company Mobile Number is Required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Logo</label>
+              <input type="file" (change)="onFileSelected($event)" class="form-control" />
+            </div>
+          </div>
+          <hr />
+          <h6 class="text-secondary mb-3">Basic Information</h6>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label fw-bold">First Name</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.first_name" name="first_name"
+                required #firstName="ngModel" />
+              <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">First Name is required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Last Name</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.last_name" name="last_name"
+                required #lastName="ngModel" />
+              <div *ngIf="lastName.invalid && lastName.touched" class="text-danger">Last Name is Required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Gender</label>
+              <select class="form-control" [(ngModel)]="selectedAdminSeller.gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Email</label>
+              <input type="email" class="form-control" [(ngModel)]="selectedAdminSeller.email" name="email" required #email="ngModel" />
+              <div *ngIf="email.invalid && email.touched" class="text-danger">Email is Required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Mobile Number</label>
+              <input type="text" class="form-control" [(ngModel)]="selectedAdminSeller.mobile_number"
+                name="mobile_number" required #mobileNumber="ngModel" />
+              <div *ngIf="mobileNumber.invalid && mobileNumber.touched" class="text-danger">Mobile Number is Required.</div>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-bold">Status</label>
+              <select class="form-control" [(ngModel)]="selectedAdminSeller.status" name="status">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="editSellerForm.invalid">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

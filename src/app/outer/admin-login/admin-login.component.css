@@ -1,0 +1,84 @@
+Add this custom CSS
+.signIn-container {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Soft shadow */
+  background-color: #f9f9f9; 
+  width: 40% !important;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+}
+
+.signIn-container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; 
+}
+
+.signIn-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.signIn-input:focus {
+  border-color: #e03c31; /* Highlight border color */
+  outline: none;
+  box-shadow: 0 0 5px rgba(224, 60, 49, 0.5); /* Subtle focus shadow */
+}
+
+.email, .password {
+  margin-bottom: 15px;
+}
+
+span {
+  font-size: 0.875rem;
+  color: #e03c31;
+  margin-top: 5px;
+}
+
+.username {
+  margin-top: 20px;
+}
+
+.btn-signIn {
+  background-color: #e03c31;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-signIn:hover {
+  background-color: #cc2a27; 
+  transform: translateY(-2px); 
+}
+
+.btn-signIn:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(224, 60, 49, 0.5); 
+}
+
+.user-type-selection {
+  margin-bottom: 20px;
+}
+
+.user-type-selection input {
+  margin-right: 5px;
+}
+
+.user-type-selection label {
+  font-size: 1rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+}

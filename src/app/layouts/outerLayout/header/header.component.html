@@ -1,0 +1,35 @@
+<nav class="w-full bg-white shadow-md fixed top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-3 py-1">
+    <!-- Logo -->
+    <div class="font-bold text-gray-800">
+      <h1 class="heading">Style</h1>
+    </div>
+
+    <!-- Hamburger Menu Button -->
+    <button
+      class="sm:hidden text-black"
+      (click)="toggleMenu()">
+      {{ isMenuOpen ? '✖' : '☰' }}
+    </button>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden sm:flex items-center gap-8 font-semibold">
+      <li><a routerLink="/home" class="text-black hover:text-[#004E89] transition">Home</a></li>
+      <li><a routerLink="/about" class="text-black hover:text-[#004E89] transition">About</a></li>
+      <li><a routerLink="/contactus" class="text-black hover:text-[#004E89] transition">Contact Us</a></li>
+      <li><a routerLink="/signup" class="bg-[#004E89] text-white p-[10px] rounded hover:bg-[#00356b] transition">Sign Up</a></li>
+      <li><a routerLink="/signIn" class="bg-[#004E89] text-white p-[10px] rounded hover:bg-[#00356b] transition">Sign In</a></li>
+    </ul>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="sm:hidden" [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}">
+    <ul class="flex flex-col items-center gap-4 py-2 bg-white shadow-sm">
+      <li><a routerLink="/home" class="text-black hover:text-[#004E89] transition" (click)="toggleMenu()">Home</a></li>
+      <li><a routerLink="/about" class="text-black hover:text-[#004E89] transition" (click)="toggleMenu()">About</a></li>
+      <li><a routerLink="/contactus" class="text-black hover:text-[#004E89] transition" (click)="toggleMenu()">Contact Us</a></li>
+      <li><a routerLink="/signup" class="bg-[#004E89] text-white px-4 py-2 rounded hover:bg-[#00356b] transition" (click)="toggleMenu()">Sign Up</a></li>
+      <li><a routerLink="/signIn" class="bg-[#004E89] text-white px-4 py-2 rounded hover:bg-[#00356b] transition" (click)="toggleMenu()">Sign In</a></li>
+    </ul>
+  </div>
+</nav>

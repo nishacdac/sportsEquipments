@@ -1,0 +1,166 @@
+<div class="flex justify-end">
+  <button class="btn-add bg-[blue] text-white" routerLink="../add-product">Add</button>
+</div>
+
+
+
+<div class="container p-6">
+
+  <!-- Table to display product details -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-responsive">
+      <thead class="thead-light">
+        <tr class="text-[16px]">
+          <th class="w-1/4">Name</th>
+          <th class="w-1/4">Category ID</th>
+          <th class="w-1/4">Material Type</th>
+          <th class="w-1/4">Image</th>
+          <th class="w-1/4">Description</th>
+          <th class="w-1/4">Price</th>
+          <th class="w-1/4">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="text-[14px]">
+          <td>{{ product.product_name }}</td>
+          <td style="white-space: nowrap;">{{ product.category_id }}</td>
+          <td>{{ product.material_type }}</td>
+          <td>
+            <img *ngIf="product.image_url" [src]="product.image_url" alt="Product Image" class="img-fluid rounded-lg"
+              style="max-width: 120px; height: auto; object-fit: cover;" />
+          </td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td class="flex gap-4">
+            <button class="btn btn-primary btn-sm" (click)="editProduct(product)">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn btn-info btn-sm" (click)="viewDetails(product)">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- Edit Modal -->
+<div *ngIf="modalType === 'edit'" class="modal fade show d-block" tabindex="-1" style="display: block;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-lg shadow-lg">
+      <div class="modal-header bg-primary text-white rounded-t-lg">
+        <h5 class="modal-title">Edit Product</h5>
+        <button type="button" class="close text-white" (click)="closeModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #productForm="ngForm" (ngSubmit)="saveChanges(productForm)" novalidate>
+        <div class="modal-body p-4 bg-light">
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" [(ngModel)]="selectedProduct!.product_name" name="productName" 
+                   class="form-control" required #productName="ngModel" />
+            <div *ngIf="productName.invalid && productName.touched" class="text-danger">
+              Product Name is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="category_id">Category ID</label>
+            <input type="text" id="category_id" [(ngModel)]="selectedProduct!.category_id" name="category_id" 
+                   class="form-control" required #categoryId="ngModel" />
+            <div *ngIf="categoryId.invalid && categoryId.touched" class="text-danger">
+              Category ID is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="materialType">Material Type</label>
+            <input type="text" id="materialType" [(ngModel)]="selectedProduct!.material_type" name="materialType" 
+                   class="form-control" required #materialType="ngModel" />
+            <div *ngIf="materialType.invalid && materialType.touched" class="text-danger">
+              Material Type is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Product Image</label>
+            <input type="file" id="image" (change)="onImageChange($event)" name="image" class="form-control-file" />
+          </div>
+
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" [(ngModel)]="selectedProduct!.price" name="price" class="form-control" 
+                   required min="0" #price="ngModel" />
+            <div *ngIf="price.invalid && price.touched" class="text-danger">
+              Price is required and must be a positive number.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select [(ngModel)]="selectedProduct!.in_Active" id="status" name="status" class="form-control" 
+                    required #status="ngModel">
+              <option [value]="true">Active</option>
+              <option [value]="false">Inactive</option>
+            </select>
+            <div *ngIf="status.invalid && status.touched" class="text-danger">
+              Status is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea [(ngModel)]="selectedProduct!.description" id="description" name="description" class="form-control" 
+                      required #description="ngModel"></textarea>
+            <div *ngIf="description.invalid && description.touched" class="text-danger">
+              Description is required.
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success btn-sm" [disabled]="productForm.invalid">Save</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+          <!-- View Modal -->
+          <div *ngIf="modalType === 'view'" class="modal fade show d-block" tabindex="-1" style="display: block;">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content rounded-lg shadow-lg">
+                <div class="modal-header bg-info text-white rounded-t-lg">
+                  <h5 class="modal-title">Product Details</h5>
+                  <button type="button" class="close text-white" (click)="closeModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body p-4 bg-light">
+                  <p><strong>Product Name:</strong> {{ selectedProduct!.product_name }}</p>
+                  <p><strong>Category ID:</strong> {{ selectedProduct!.category_id }}</p>
+                  <p><strong>Material Type:</strong> {{ selectedProduct!.material_type }}</p>
+                  <p><strong>Status:</strong> {{ selectedProduct!.in_Active ? 'Active' : 'Inactive' }}</p>
+                  <p><strong>Description:</strong> {{ selectedProduct!.description }}</p>
+                  <p><strong>Price:</strong> {{ selectedProduct!.price | currency }}</p> <!-- Display Price -->
+                  <p><strong>Created Date:</strong> {{ selectedProduct!.create_At | date }}</p>
+                  <p><strong>Updated At:</strong> {{ selectedProduct!.update_At | date }}</p>
+
+                  <div *ngIf="selectedProduct!.image_url">
+                    <img [src]="selectedProduct!.image_url" alt="Product Image" class="img-fluid rounded-lg"
+                      style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="closeModal()">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>

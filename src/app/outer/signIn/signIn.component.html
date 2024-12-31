@@ -1,0 +1,38 @@
+<!-- Form starts here -->
+<form class="signIn-container p-6 shadow-lg rounded-lg w-[90%] sm:w-[50%] md:w-[40%] lg:w-[30%] mx-auto mt-[160px] mb-10" [formGroup]="signInForm" (ngSubmit)="signInUser()">
+  <!-- Sign In Heading with responsive font size -->
+  <h1 class="text-center text-xl sm:text-2xl font-semibold mb-6">Sign In</h1>
+
+  <!-- Radio buttons to select user type (Customer or Seller) -->
+  <div class="user-type-selection flex justify-center mb-4">
+    <label class="mr-4 flex items-center text-sm sm:text-base">
+      <input type="radio" formControlName="RoleId" value="2" class="mr-2" name="RoleId" />
+      Customer
+    </label>
+    <label class="flex items-center text-sm sm:text-base">
+      <input type="radio" formControlName="RoleId" value="3" class="mr-2" name="RoleId" />
+      Seller
+    </label>
+  </div>
+
+  <!-- Email Field with responsive input sizes -->
+  <div class="email mb-4">
+    <label for="email" class="block text-sm sm:text-base font-medium">Email</label>
+    <input id="email" formControlName="email" class="signIn-input w-full p-3 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="text" placeholder="Enter Email" />
+    <span *ngIf="email?.invalid && email?.touched" class="text-red-500 text-xs">The email field is required</span>
+  </div>
+
+  <!-- Password Field with responsive input sizes -->
+  <div class="mb-4">
+    <label for="password" class="block text-sm sm:text-base font-medium">Password</label>
+    <input id="password" formControlName="password" class="signIn-input w-full p-3 text-sm sm:text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="password" placeholder="Enter Password" />
+    <span *ngIf="password?.invalid && password?.touched" class="text-red-500 text-xs">The password field is required</span>
+  </div>
+
+  <!-- Submit Button with responsive padding -->
+  <div class="mt-6">
+    <button type="submit" class="btn-signIn w-full bg-[#E03C31] text-white py-3 rounded-md hover:bg-red-700 focus:outline-none text-sm sm:text-base">
+      Log in
+    </button>
+  </div>
+</form>

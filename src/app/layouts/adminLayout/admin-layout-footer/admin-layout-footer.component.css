@@ -1,0 +1,29 @@
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .footer-section,
+  .company-info,
+  .location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .company-info h1 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .phone-info,
+  .email-info,
+  .location-info {
+    display: flex;
+    align-items: center;
+    /* gap: 10px; */
+  }
+  
+

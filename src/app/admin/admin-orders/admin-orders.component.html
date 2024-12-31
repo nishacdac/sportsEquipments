@@ -1,0 +1,22 @@
+<div class="overflow-x-auto">
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th class="px-6 py-3 text-left">Customer Name</th>
+        <th class="px-6 py-3 text-left">Contact</th>
+        <th class="px-6 py-3 text-left">Product Name</th>
+        <th class="px-6 py-3 text-left">Quantity</th>
+        <th class="px-6 py-3 text-left">Payment Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td class="px-6 py-4 border-t">{{ order.firstName }}</td>
+        <td class="px-6 py-4 border-t">{{ order.mobileNumber }}</td>
+        <td class="px-6 py-4 border-t">{{ order.product_name }}</td>
+        <td class="px-6 py-4 border-t">{{ order.quantity }}</td>
+        <td class="px-6 py-4 border-t">{{ order.paymentStatus }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

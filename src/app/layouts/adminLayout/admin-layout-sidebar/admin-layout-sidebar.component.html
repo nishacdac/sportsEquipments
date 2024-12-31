@@ -1,0 +1,119 @@
+
+<!-- Admin Profile Section -->
+<div class="w-full">
+  <!-- Spotify Admin Title (Visible on Large Screens) -->
+  <h1 class="spotify text-[20px] hidden lg:block">Spotify Admin</h1>
+
+  <!-- Hamburger Menu for Mobile (Visible on Small Screens) -->
+  <div class="lg:hidden flex justify-between items-center mt-4">
+    <!-- Hamburger Icon (Three Lines) -->
+    <button
+      id="hamburger"
+      class="text-white p-2 bg-gray-700 rounded-md mt-[90px]"
+      (click)="toggleSidebar()"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Sidebar Navigation (Large Screens Only) -->
+  <nav
+    id="sidebar"
+    class="hidden lg:flex flex-col space-y-4 text-[15px] w-full"
+  >
+    <!-- Sidebar Links -->
+    <a
+      routerLink="/admin/admin-dashboard"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+    </a>
+    <a
+      routerLink="/admin/list-product"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-boxes mr-2"></i> Products
+    </a>
+    <a
+      routerLink="/admin/admin-orders"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-shopping-cart mr-2"></i> Orders
+    </a>
+    <a
+      routerLink="/admin/list-seller"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-users mr-2"></i> Seller
+    </a>
+    <a
+      routerLink="/admin/admin-categories"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-th-large mr-2"></i> Categories
+    </a>
+    <a
+      routerLink="/admin/admin-chats"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-comments mr-2"></i> Chats
+    </a>
+  </nav>
+
+  <!-- Mobile Sidebar (Hidden by Default) -->
+  <nav
+    id="mobile-sidebar"
+    [ngClass]="{ 'block': isSidebarVisible, 'hidden': !isSidebarVisible }"
+    class="lg:hidden flex-col space-y-4 text-[15px] absolute top-0 left-0  bg-gray-800 p-4 h-[800px] mt-[90px]"
+  >
+    <a
+      routerLink="/admin/dashboard"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+    </a>
+    <a
+      routerLink="/admin/list-product"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-boxes mr-2"></i> Products
+    </a>
+    <a
+      routerLink="/admin/admin-orders"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-shopping-cart mr-2"></i> Orders
+    </a>
+    <a
+      routerLink="/admin/list-seller"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-users mr-2"></i> Seller
+    </a>
+    <a
+      routerLink="/admin/admin-categories"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-th-large mr-2"></i> Categories
+    </a>
+    <a
+      routerLink="/admin/admin-chats"
+      routerLinkActive="active-link"
+      class="sidebar-link"
+    >
+      <i class="fas fa-comments mr-2"></i> Chats
+    </a>
+
+  </nav>
+</div>

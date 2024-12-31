@@ -1,0 +1,92 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 50px auto;
+  background: linear-gradient(to bottom, #f9f9f9, #e9e9e9);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Adjust the width as needed */
+}
+
+.chat-container .messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.chat-container .message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.chat-container .message.align-items-end {
+  align-self: flex-end;
+  background: linear-gradient(to right, #d1ffd1, #b2fcb2);
+  text-align: right;
+}
+
+.chat-container .message.align-items-start {
+  align-self: flex-start;
+  background: linear-gradient(to right, #e0e0e0, #cfcfcf);
+  text-align: left;
+}
+
+.chat-container .message strong {
+  font-weight: bold;
+  display: block;
+}
+
+.chat-container .message-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(to right, #f0f0f0, #d9d9d9);
+  border-top: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.chat-container .message-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.chat-container .message-input input:focus {
+  border-color: #7cb9e8;
+  box-shadow: 0 0 5px rgba(124, 185, 232, 0.5);
+}
+
+.chat-container .message-input button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #4caf50, #2e7d32);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chat-container .message-input button:hover {
+  background: linear-gradient(to right, #388e3c, #1b5e20);
+}
+
+.chat-container .message-input button:active {
+  transform: scale(0.98); 
+  background: linear-gradient(to right, #388e3c, #2e7d32);
+}

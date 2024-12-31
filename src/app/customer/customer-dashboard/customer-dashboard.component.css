@@ -1,0 +1,26 @@
+/* .customer-h{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+
+  .right-heading{
+    font-size: 28px !important;
+    font-weight: 500 !important;
+  }
+   */
+
+
+   .product{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+   }

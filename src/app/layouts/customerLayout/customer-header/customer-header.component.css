@@ -1,0 +1,207 @@
+/* .navbar-container {
+    position: relative;
+}
+
+.relative {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 40px; 
+    right: 0;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+.dropdown-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f5f5f5;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-menu .btn-logout {
+    width: 100%;
+    background-color: #f39c12;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-menu .btn-logout:hover {
+    background-color: #e67e22;
+    transition: background-color 0.2s ease;
+}
+
+.navbar-container {
+    background-color: #111;
+    color: white;
+    padding: 16px;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-menu .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f39c12;
+}
+
+.navbar-menu .menu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-menu .menu i {
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar-menu .menu i:hover {
+    color: #f39c12;
+}
+button {
+    font-size: 14px;
+    background-color: #f39c12;
+    color: black;
+    padding: 10px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #e67e22;
+} */
+
+/* .logo{
+    font-size: 22px !important;
+}
+.navbar-container {
+    background-color: black;
+    color: white;
+  }
+  
+  .dropdown-menu {
+    z-index: 1000;
+  }
+  
+  .logout-btn {
+    transition: background-color 0.3s ease;
+  }
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  @media (max-width: 768px) {
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .navbar-container {
+      position: relative;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
+  }
+   */
+
+
+   /* General styles */
+.logo {
+    font-size: 22px !important;
+}
+
+.navbar-container {
+    background-color: black;
+    color: white;
+}
+
+.dropdown-menu {
+    z-index: 1000;
+}
+
+.logout-btn {
+    transition: background-color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* For mobile screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .menu {
+    display: flex;
+    flex-direction: column; /* Stack the items vertically */
+    gap: 10px;
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column; /* Stack the navigation links vertically */
+    gap: 10px;
+  }
+
+  .navbar-container {
+    position: relative;
+  }
+
+  /* For logo to fit in smaller screens */
+  .logo {
+    font-size: 20px !important; /* Reduce logo size on small screens */
+  }
+}
+
+/* For larger screens (min-width: 768px) */
+@media (min-width: 768px) {
+  .menu {
+    display: flex;
+    gap: 20px;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    gap: 20px; /* Horizontal spacing between Dashboard and Chats */
+  }
+
+  /* For logo to fit in larger screens */
+  .logo {
+    font-size: 30px !important;
+  }
+}

@@ -1,0 +1,23 @@
+#mobile-sidebar {
+    transition: transform 0.3s ease;
+  }
+  
+  /* #mobile-sidebar.hidden {
+    transform: translateX(-100%);
+  } */
+  
+  #mobile-sidebar:not(.hidden) {
+    transform: translateX(0); /* Show sidebar */
+  }
+  
+  .sidebar-link {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .sidebar-link:hover {
+    background-color: #444;
+  }
+  

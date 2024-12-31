@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Remove default padding and margin */
+body {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box;
+    width: 100%; */
+}
+h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 38px;
+}
+
+/* Apply box-sizing to all elements */
+/* *, *::before, *::after {
+    box-sizing: inherit;
+} */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

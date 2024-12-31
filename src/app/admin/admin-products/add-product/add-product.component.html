@@ -1,0 +1,143 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Add Product</h2>
+
+  <!-- Form Wrapper with Box Shadow -->
+  <div class="shadow-lg p-5 rounded-lg bg-white w-75 mx-auto">
+    <!-- Form to Add Product -->
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+      <!-- Product Name -->
+      <div class="form-group mb-3">
+        <label for="product_name" class="form-label">Product Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="product_name"
+          formControlName="product_name"
+          placeholder="Enter product name"
+        />
+        <div *ngIf="addProductForm.get('product_name')?.invalid && addProductForm.get('product_name')?.touched" class="text-danger">
+          Product Name is required.
+        </div>
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="form-group mb-3">
+        <label for="categoryName" class="form-label">Category Name</label>
+        <select
+          class="form-select"
+          id="categoryName"
+          formControlName="categoryName"
+        >
+          <option value="" disabled selected>Select Category</option>
+          <option *ngFor="let category of categories" [value]="category.name">
+            {{ category.name }}
+          </option>
+        </select>
+        <div *ngIf="addProductForm.get('categoryName')?.invalid && addProductForm.get('categoryName')?.touched" class="text-danger">
+          Category is required.
+        </div>
+      </div>
+
+      <!-- Material Type -->
+      <div class="form-group mb-3">
+        <label for="material_type" class="form-label">Material Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="material_type"
+          formControlName="material_type"
+          placeholder="Enter material type"
+        />
+        <div *ngIf="addProductForm.get('material_type')?.invalid && addProductForm.get('material_type')?.touched" class="text-danger">
+          Material Type is required.
+        </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="form-group mb-3">
+        <label for="image" class="form-label">Image Upload</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image"
+          (change)="onFileChange($event)"
+          accept="image/*"
+        />
+        <div *ngIf="addProductForm.get('image_url')?.invalid && addProductForm.get('image_url')?.touched" class="text-danger">
+          Image is required.
+        </div>
+      </div>
+
+      <!-- Image Preview -->
+      <div class="form-group mb-3">
+        <img *ngIf="imageBase64" [src]="imageBase64" alt="Image Preview" style="max-width: 150px; height: auto;" />
+      </div>
+
+      <!-- Status -->
+      <div class="form-group mb-3">
+        <label for="status" class="form-label">Status</label>
+        <div class="input-group">
+          <select
+            class="form-select"
+            id="status"
+            formControlName="status"
+          >
+            <option value="" disabled selected>Select Status</option>
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+          </select>
+        </div>
+        <div *ngIf="addProductForm.get('status')?.invalid && addProductForm.get('status')?.touched" class="text-danger">
+          Status is required.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          formControlName="description"
+          placeholder="Enter product description"
+        ></textarea>
+        <div *ngIf="addProductForm.get('description')?.invalid && addProductForm.get('description')?.touched" class="text-danger">
+          Description is required.
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          formControlName="price"
+          placeholder="Enter product price"
+        />
+        <div *ngIf="addProductForm.get('price')?.invalid && addProductForm.get('price')?.touched" class="text-danger">
+          Price is required and must be a positive number.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center flex gap-3">
+        <button
+          type="submit"
+          class="btn btn-primary px-4 py-2"
+          [disabled]="addProductForm.invalid"
+        >
+          Add Product
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary px-4 py-2"
+          routerLink="../list-product"
+        >
+          Back
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+/* Add styles to make the table look cleaner */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f3f4f6;
+  }
+  
+  td {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Add styles for the modal */
+  .fixed {
+    z-index: 9999;
+  }
+  
+  .bg-gray-900 {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .bg-white {
+    background-color: white;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .max-w-lg {
+    max-width: 500px;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  .p-2 {
+    padding: 0.5rem;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .rounded {
+    border-radius: 8px;
+  }
+
+  .heading{
+    font-size: 22px !important;
+    font-weight: 600;
+  }
+  
+/* 
+  input {
+    padding: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  button {
+    cursor: pointer;
+    padding: 8px 12px;
+  }
+   */
+   .btnn{
+   display: flex;
+    align-items: center;
+    justify-content: end;
+    margin: 20px;
+   }

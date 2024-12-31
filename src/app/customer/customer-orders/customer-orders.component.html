@@ -1,0 +1,101 @@
+<div class="container mx-auto p-4">
+  <h1 class="cart text-xl font-semibold">Cart Summary</h1>
+
+  <!-- Table to display cart data -->
+  <table class="table table-bordered w-full mt-4">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Date</th>
+        <th class="px-4 py-2">Customer Name</th>
+        <th class="px-4 py-2">Product Name</th>
+        <th class="px-4 py-2">Quantity</th>
+        <th class="px-4 py-2">Price</th>
+        <th class="px-4 py-2">Image</th>
+        <th class="px-4 py-2">Actions</th> <!-- Added column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartData">
+        <td class="px-4 py-2">{{ item.date | date: 'short' }}</td>
+        <td class="px-4 py-2">{{ item.firstName }} {{ item.lastName }}</td>
+        <td class="px-4 py-2">{{ item.product_name }}</td>
+        <td class="px-4 py-2">
+          <div class="d-flex justify-content-between align-items-center gap-[5px] ">
+            <!-- {{ item.quantity }} -->
+            <!-- <button class="btn btn-sm btn-outline-secondary" (click)="addToCart(item.product_name)">
+              <i class="bi bi-dash"></i>
+            </button> -->
+            <!-- <button class="btn btn-sm btn-outline-secondary" >
+           
+            </button> -->
+
+
+            <button
+            class="btn btn-sm btn-outline-secondary"
+            (click)="decrementQuantity(item.product_id, item.quantity)"
+          >
+            <i class="bi bi-dash"></i>
+          </button>
+          
+            {{ item.quantity }}
+            <button class="btn btn-sm btn-outline-secondary" (click)="addToCart(item.product_name)">
+    
+              <i class="bi bi-plus"></i>
+            </button>
+          </div>
+        </td>
+        <td class="px-4 py-2">{{ item.price | currency }}</td>
+        <td class="px-4 py-2">
+          <img [src]="item.image_url" alt="Product Image" class="w-20 h-20 object-cover">
+        </td>
+        <td class="px-4 py-2">
+          <button class="btn btn-sm btn-danger"  (click)="deleteCartItem(item.product_id)">
+          Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Total Price -->
+  <div class="d-flex justify-content-end mr-[242px]">
+    <div class="text-xl font-semibold">
+      <span class="text-gray-700">Total Price:</span>
+      <span *ngIf="totalPrice >= 0" class="text-red-600">
+        {{ totalPrice | currency }}
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<div *ngFor="let product of products"
+class="border rounded-lg shadow-md hover:shadow-lg transition duration-300 bg-white flex flex-col">
+<!-- Product Image -->
+<div class="h-[180px] bg-gray-100 flex justify-center items-center overflow-hidden">
+  <img [src]="product.image_url" alt="Product Image" class="h-full w-full object-cover" />
+</div>
+
+<!-- Product Details -->
+<div class="px-4 pt-4 pb-0">
+  <h2 class="customer-h m-0 break-words leading-tight">{{ product.product_name }}</h2>
+  <p class="text-xs text-gray-700">
+    {{ product.description || 'No description available' }}
+  </p>
+</div>
+
+<!-- Price and Action Button -->
+<div class="px-4 pb-4 pt-0 mt-auto">
+  <p class="text-lg font-bold text-gray-800 mb-2">₹{{ product.price }}</p>
+  <div class="flex gap-3">
+   
+
+    <button (click)="addToCart(product.product_name)"
+      class="bg-blue-600 text-white w-full py-2 rounded-lg hover:bg-blue-700 transition text-[13px]">
+      Add to Cart
+    </button>
+
+    
+  </div>
+</div>
+</div>

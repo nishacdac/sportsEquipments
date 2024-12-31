@@ -1,0 +1,74 @@
+<form class="sign-container mt-[80px] !mt-[174px] px-4 sm:px-8 md:px-16" [formGroup]="signUpForm" (ngSubmit)="signUpUser()">
+  <!-- Sign Up Heading -->
+  <h1 class="text-center text-xl sm:text-2xl md:text-3xl font-semibold mb-6">Sign Up</h1>
+
+  <!-- First Name Field -->
+  <div class="mb-4">
+    <label for="firstname" class="block text-sm sm:text-base">First Name*</label>
+    <input formControlName="firstname" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="text" id="firstname" placeholder="First Name" />
+    <span *ngIf="signUpForm.get('firstname')?.invalid && signUpForm.get('firstname')?.touched" class="text-red-500 text-xs">The name field is required.</span>
+  </div>
+
+  <!-- Last Name Field -->
+  <div class="mb-4">
+    <label for="lastname" class="block text-sm sm:text-base">Last Name*</label>
+    <input formControlName="lastname" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="text" id="lastname" placeholder="Last Name" />
+    <span *ngIf="signUpForm.get('lastname')?.invalid && signUpForm.get('lastname')?.touched" class="text-red-500 text-xs">The last name field is required.</span>
+  </div>
+
+  <!-- Email Field -->
+  <div class="mb-4">
+    <label for="email" class="block text-sm sm:text-base">Email*</label>
+    <input formControlName="email" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="email" id="email" placeholder="Email" />
+    <span *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="text-red-500 text-xs">
+      The email is not valid or is required.
+    </span>
+  </div>
+
+  <!-- Gender Field -->
+  <div class="mb-4">
+    <label for="gender" class="block text-sm sm:text-base">Gender*</label>
+    <select formControlName="gender" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" id="gender">
+      <option value="" disabled>Select Gender</option>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+      <option value="other">Other</option>
+    </select>
+    <span *ngIf="signUpForm.get('gender')?.invalid && signUpForm.get('gender')?.touched" class="text-red-500 text-xs">The gender field is required.</span>
+  </div>
+
+  <!-- Mobile Number Field -->
+  <div class="mb-4">
+    <label for="mobileNumber" class="block text-sm sm:text-base">Mobile Number*</label>
+    <input formControlName="mobileNumber" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="tel" id="mobileNumber" placeholder="Mobile Number" />
+    <span *ngIf="signUpForm.get('mobileNumber')?.invalid && signUpForm.get('mobileNumber')?.touched" class="text-red-500 text-xs">
+      Enter a valid 10-digit mobile number.
+    </span>
+  </div>
+
+  <!-- Password Field -->
+  <div class="mb-4">
+    <label for="password" class="block text-sm sm:text-base">Password*</label>
+    <input formControlName="password" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" type="password" id="password" placeholder="Password" />
+    <span *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched" class="text-red-500 text-xs">
+      Password must be at least 6 characters long.
+    </span>
+  </div>
+
+  <!-- RoleId Field -->
+  <div class="mb-4">
+    <label for="roleId" class="block text-sm sm:text-base">RoleId*</label>
+    <select formControlName="RoleId" class="sign-input w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500" id="roleId">
+      <option value="" disabled>Select RoleId</option>
+      <option *ngFor="let role of roles" [value]="role.value">{{role.displayName}}</option>
+    </select>
+    <span *ngIf="signUpForm.get('RoleId')?.invalid && signUpForm.get('RoleId')?.touched" class="text-red-500 text-xs">
+      Role is required.
+    </span>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" class="w-full bg-[#E03C31] text-white py-3 mt-6 rounded-md hover:bg-red-700 focus:outline-none text-sm sm:text-base">
+    Sign Up
+  </button>
+</form>
